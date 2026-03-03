@@ -66,6 +66,18 @@ header {
 .name-input:focus { border-color:var(--gold); }
 .name-input::placeholder { color:rgba(238,224,196,0.3); }
 
+.group-select {
+  padding:7px 14px; background:rgba(12,36,56,0.7); border:1px solid rgba(201,151,42,0.3);
+  border-radius:4px; color:var(--sand); font-family:'Cinzel',serif;
+  font-size:0.72rem; letter-spacing:0.06em; outline:none; cursor:pointer;
+  appearance:none; -webkit-appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23C9972A'/%3E%3C/svg%3E");
+  background-repeat:no-repeat; background-position:right 10px center;
+  padding-right:28px;
+}
+.group-select:focus { border-color:var(--gold); }
+.group-select option { background:#091929; color:var(--sand); }
+
 .btn-submit {
   padding:8px 22px; background:linear-gradient(135deg,var(--fire),var(--ember));
   border:none; border-radius:4px; color:white; font-family:'Cinzel',serif;
@@ -229,6 +241,11 @@ header {
 <div class="name-bar">
   <span class="name-label">YOUR NAME</span>
   <input class="name-input" id="playerName" type="text" placeholder="Enter your name…" maxlength="30">
+  <span class="name-label" style="margin-left:8px">POOL</span>
+  <select class="group-select" id="groupSelect" onchange="onGroupChange()">
+    <option value="friends">Friends</option>
+    <option value="ddx">DDx</option>
+  </select>
   <button class="btn-submit" id="btnSubmit" onclick="submitToSheets()">🔥 Submit My Bracket</button>
   <div class="submit-status" id="submitStatus"></div>
 </div>
@@ -337,7 +354,7 @@ header {
 // ══════════════════════════════════════════════
 // ⚙️  PASTE YOUR APPS SCRIPT URL HERE
 // ══════════════════════════════════════════════
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzVAMcTjbyQuzBPeoMdsmF-jfyrc9lDaz-w7DcvGQ51t6NyzWsbxPOjY4asgdO6yjn2/exec';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwkJTmYnB0g7DulwZ5aGmBXsvX5B3lqxxgcTb50RIGebiSjZpJPwI3UsMHRK2Q1dcOt/exec';
 
 // ══════════════════════════════════════════════
 // CAST DATA
@@ -381,13 +398,27 @@ const TRIBE_INFO = {
 // ══════════════════════════════════════════════
 // STATE  (localStorage per-device draft)
 // ══════════════════════════════════════════════
-const LS_KEY = 's50_draft';
+let currentGroup  = localStorage.getItem('s50_group') || 'friends';
 let draft = loadDraft();
 let activeSlotKey = null;
 let currentView   = 'bracket';
 
+// Restore group selection on load
+document.getElementById('groupSelect').value = currentGroup;
+
+function lsKey() { return 's50_draft_' + currentGroup; }
+
+function onGroupChange() {
+  currentGroup = document.getElementById('groupSelect').value;
+  localStorage.setItem('s50_group', currentGroup);
+  draft = loadDraft();
+  setStatus('', '');
+  renderAll();
+  if (currentView === 'all') loadAllPicks();
+}
+
 function loadDraft() {
-  try { return JSON.parse(localStorage.getItem(LS_KEY)) || newDraft(); }
+  try { return JSON.parse(localStorage.getItem(lsKey())) || newDraft(); }
   catch { return newDraft(); }
 }
 function newDraft() {
@@ -400,7 +431,7 @@ function newDraft() {
     jury:     new Array(9).fill(null),
   };
 }
-function saveDraft() { localStorage.setItem(LS_KEY, JSON.stringify(draft)); }
+function saveDraft() { localStorage.setItem(lsKey(), JSON.stringify(draft)); }
 
 function allSlotNames() {
   return new Set([
@@ -603,8 +634,11 @@ async function submitToSheets() {
 
   if (mergeNames.length === 0) { alert('Fill in at least your Merge picks before submitting!'); return; }
 
+  const poolLabel = currentGroup === 'ddx' ? 'DDx' : 'Friends';
+
   const payload = {
     name,
+    group: currentGroup,
     timestamp:      new Date().toISOString(),
     premerge_boots: draft.premerge.join(', '),
     merge:          mergeNames.join(', '),
@@ -627,7 +661,7 @@ async function submitToSheets() {
       body: JSON.stringify(payload),
     });
     // no-cors means we can't read the response — assume success
-    setStatus('success', `✓ ${name}'s bracket submitted!`);
+    setStatus('success', `✓ ${name}'s bracket submitted to ${poolLabel}!`);
     // Store submission flag locally
     localStorage.setItem('s50_submitted_name', name);
   } catch (err) {
@@ -656,7 +690,7 @@ async function loadAllPicks() {
   }
 
   try {
-    const res  = await fetch(APPS_SCRIPT_URL + '?action=getAll');
+    const res  = await fetch(APPS_SCRIPT_URL + '?action=getAll&group=' + currentGroup);
     const rows = await res.json();
 
     if (!rows.length) { grid.innerHTML = `<div class="sc-loading" style="color:var(--sand-dim)">No submissions yet.</div>`; return; }
