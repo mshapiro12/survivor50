@@ -24,15 +24,11 @@
   --slot-filled:rgba(201,151,42,0.18);
 }
 * { margin:0; padding:0; box-sizing:border-box; }
-body {
-  background:var(--night); color:var(--sand);
-  font-family:'Barlow Condensed',sans-serif; min-height:100vh; overflow-x:hidden;
-}
+body { background:var(--night); color:var(--sand); font-family:'Barlow Condensed',sans-serif; min-height:100vh; overflow-x:hidden; }
 body::before {
   content:''; position:fixed; inset:0;
-  background:
-    radial-gradient(ellipse at 15% 90%, rgba(255,90,26,0.07) 0%, transparent 50%),
-    radial-gradient(ellipse at 85% 10%, rgba(12,36,56,0.5) 0%, transparent 50%);
+  background: radial-gradient(ellipse at 15% 90%, rgba(255,90,26,0.07) 0%, transparent 50%),
+              radial-gradient(ellipse at 85% 10%, rgba(12,36,56,0.5) 0%, transparent 50%);
   pointer-events:none; z-index:0;
 }
 
@@ -65,19 +61,16 @@ header {
 }
 .name-input:focus { border-color:var(--gold); }
 .name-input::placeholder { color:rgba(238,224,196,0.3); }
-
 .group-select {
   padding:7px 14px; background:rgba(12,36,56,0.7); border:1px solid rgba(201,151,42,0.3);
   border-radius:4px; color:var(--sand); font-family:'Cinzel',serif;
   font-size:0.72rem; letter-spacing:0.06em; outline:none; cursor:pointer;
   appearance:none; -webkit-appearance:none;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23C9972A'/%3E%3C/svg%3E");
-  background-repeat:no-repeat; background-position:right 10px center;
-  padding-right:28px;
+  background-repeat:no-repeat; background-position:right 10px center; padding-right:28px;
 }
 .group-select:focus { border-color:var(--gold); }
 .group-select option { background:#091929; color:var(--sand); }
-
 .btn-submit {
   padding:8px 22px; background:linear-gradient(135deg,var(--fire),var(--ember));
   border:none; border-radius:4px; color:white; font-family:'Cinzel',serif;
@@ -85,11 +78,7 @@ header {
 }
 .btn-submit:hover { transform:translateY(-1px); box-shadow:0 4px 16px rgba(255,90,26,0.4); }
 .btn-submit:disabled { opacity:0.4; cursor:not-allowed; transform:none; box-shadow:none; }
-
-.submit-status {
-  font-family:'Cinzel',serif; font-size:0.68rem; letter-spacing:0.06em;
-  padding:6px 12px; border-radius:4px; display:none;
-}
+.submit-status { font-family:'Cinzel',serif; font-size:0.68rem; letter-spacing:0.06em; padding:6px 12px; border-radius:4px; display:none; }
 .submit-status.success { display:block; background:rgba(42,158,140,0.2); border:1px solid rgba(42,158,140,0.4); color:#5dd4c0; }
 .submit-status.error   { display:block; background:rgba(180,30,30,0.2); border:1px solid rgba(180,30,30,0.4); color:#f08080; }
 .submit-status.loading { display:block; background:rgba(201,151,42,0.1); border:1px solid rgba(201,151,42,0.3); color:var(--gold); }
@@ -102,17 +91,14 @@ header {
 
 /* INSTRUCTION */
 .instr-bar {
-  position:relative; z-index:7;
-  background:rgba(201,151,42,0.05); border-bottom:1px solid rgba(201,151,42,0.1);
+  position:relative; z-index:7; background:rgba(201,151,42,0.05); border-bottom:1px solid rgba(201,151,42,0.1);
   padding:8px 24px; font-size:0.77rem; color:var(--sand-dim); line-height:1.5;
 }
 .instr-bar strong { color:var(--gold-light); }
 
-/* BRACKET SCROLL */
+/* BRACKET */
 .bracket-scroll { position:relative; z-index:1; overflow-x:auto; padding:28px 24px 80px; }
 .bracket { display:flex; align-items:flex-start; min-width:1000px; }
-
-/* TRIBE COLUMN */
 .tribe-col { flex-shrink:0; width:182px; display:flex; flex-direction:column; gap:18px; }
 .tribe-block { display:flex; flex-direction:column; }
 .tribe-header { font-family:'Cinzel',serif; font-size:0.7rem; font-weight:700; letter-spacing:0.18em; text-align:center; padding:7px 10px; border-radius:4px 4px 0 0; }
@@ -123,8 +109,7 @@ header {
 .tribe-member {
   padding:6px 9px; border-radius:3px; text-align:center;
   font-family:'Barlow Condensed',sans-serif; font-size:0.74rem; font-weight:600;
-  cursor:pointer; user-select:none; transition:all .13s;
-  border:1px solid transparent; letter-spacing:0.02em; color:white;
+  cursor:pointer; user-select:none; transition:all .13s; border:1px solid transparent; letter-spacing:0.02em; color:white;
 }
 .tm-cila { background:var(--cila); }
 .tm-kalo  { background:var(--kalo); }
@@ -132,23 +117,16 @@ header {
 .tribe-member:hover:not(.pre-merge) { filter:brightness(1.15); }
 .tribe-member.pre-merge { opacity:0.3; cursor:default; filter:grayscale(0.5) brightness(0.7); text-decoration:line-through; text-decoration-color:rgba(255,255,255,0.5); }
 .tribe-member.in-bracket { outline:2px solid rgba(255,255,255,0.65); outline-offset:1px; }
-
-/* CONNECTORS */
 .conn { flex-shrink:0; width:20px; align-self:stretch; position:relative; }
 .conn::before { content:''; position:absolute; top:0; bottom:0; left:50%; width:1px; background:rgba(201,151,42,0.15); }
 .conn::after  { content:''; position:absolute; left:0; right:0; height:1px; background:rgba(201,151,42,0.28); top:30%; }
 .conn.mid::after { top:50%; }
 .conn.top::after { top:10%; }
-
-/* STAGE COLUMN */
 .stage-col { flex-shrink:0; display:flex; flex-direction:column; }
 .stage-label { font-family:'Cinzel Decorative',serif; font-size:0.72rem; color:var(--gold-light); text-align:center; margin-bottom:10px; letter-spacing:0.04em; text-shadow:0 1px 8px rgba(0,0,0,0.5); }
 .slots-stack { display:flex; flex-direction:column; gap:5px; }
-
-/* SLOT */
 .slot {
-  height:29px; width:152px;
-  background:var(--slot-bg); border:1px solid var(--slot-border); border-radius:4px;
+  height:29px; width:152px; background:var(--slot-bg); border:1px solid var(--slot-border); border-radius:4px;
   display:flex; align-items:center; justify-content:center;
   font-family:'Cinzel',serif; font-size:0.62rem; color:rgba(238,224,196,0.3);
   cursor:pointer; transition:all .13s; padding:0 8px;
@@ -159,71 +137,116 @@ header {
 .slot.filled:hover { background:rgba(201,151,42,0.26); border-color:var(--gold-light); }
 .slot.winner-slot { height:34px; background:linear-gradient(135deg,rgba(255,215,0,0.14),rgba(201,151,42,0.08)); border-color:rgba(201,151,42,0.38); color:rgba(232,184,75,0.45); font-size:0.65rem; }
 .slot.winner-slot.filled { background:linear-gradient(135deg,rgba(255,215,0,0.22),rgba(201,151,42,0.14)); border-color:var(--gold-light); color:var(--gold-light); box-shadow:0 0 12px rgba(255,215,0,0.18); }
-
-/* TRIBE DOT in slot */
 .slot-inner { display:flex; align-items:center; gap:6px; overflow:hidden; }
 .sdot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
-.sdot-cila { background:var(--cila); }
-.sdot-kalo  { background:var(--kalo); }
-.sdot-vatu  { background:var(--vatu); }
+.sdot-cila { background:var(--cila); } .sdot-kalo { background:var(--kalo); } .sdot-vatu { background:var(--vatu); }
 .slot-name { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-
-/* FIRE DIVIDER */
 .fire-divider { display:flex; align-items:center; gap:8px; margin:10px 0 6px; }
 .fire-line { flex:1; height:1px; background:rgba(255,90,26,0.25); }
 .fire-text { font-family:'Cinzel',serif; font-size:0.54rem; letter-spacing:0.2em; color:var(--fire); white-space:nowrap; }
-
-/* JURY GRID */
 .jury-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:5px; width:466px; }
 .jury-grid .slot { width:100%; }
-
-/* PODIUM ROW */
 .podium-row { display:flex; align-items:center; gap:7px; margin-bottom:5px; }
 .podium-icon { font-size:1rem; flex-shrink:0; }
 
-/* TROPHIES */
-.trophy-stack { display:flex; flex-direction:column; align-items:center; gap:6px; padding:18px 0 0 18px; }
-@keyframes glow { 0%,100%{filter:drop-shadow(0 0 6px rgba(255,215,0,0.4))} 50%{filter:drop-shadow(0 0 20px rgba(255,215,0,0.9))} }
-.glow-trophy { animation:glow 2.4s ease-in-out infinite; }
+
+/* PICKER */
+.picker-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:100; display:none; align-items:center; justify-content:center; }
+.picker-overlay.open { display:flex; }
+.picker-modal { background:var(--deep); border:1px solid rgba(201,151,42,0.3); border-radius:8px; width:min(420px,92vw); max-height:80vh; display:flex; flex-direction:column; overflow:hidden; }
+.picker-head { padding:14px 18px 10px; border-bottom:1px solid rgba(201,151,42,0.15); }
+.picker-title { font-family:'Cinzel Decorative',serif; font-size:0.85rem; color:var(--gold-light); }
+.picker-sub { font-family:'Cinzel',serif; font-size:0.6rem; color:var(--sand-dim); margin-top:3px; letter-spacing:0.08em; }
+.picker-list { overflow-y:auto; flex:1; padding:6px 0; }
+.picker-item { display:flex; align-items:center; gap:10px; padding:8px 18px; cursor:pointer; transition:background .12s; }
+.picker-item:hover:not(.used) { background:rgba(201,151,42,0.1); }
+.picker-item.used { opacity:0.3; cursor:default; }
+.picker-pip { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+.pip-cila{background:var(--cila);} .pip-kalo{background:var(--kalo);} .pip-vatu{background:var(--vatu);}
+.picker-name { font-family:'Barlow Condensed',sans-serif; font-size:0.85rem; color:var(--sand); }
+.picker-season { font-family:'Barlow Condensed',sans-serif; font-size:0.68rem; color:var(--sand-dim); }
+.picker-foot { padding:10px 18px; border-top:1px solid rgba(201,151,42,0.12); display:flex; gap:8px; justify-content:flex-end; }
+.btn-clear { padding:6px 14px; background:rgba(255,90,26,0.12); border:1px solid rgba(255,90,26,0.3); border-radius:4px; color:#f08080; font-family:'Cinzel',serif; font-size:0.62rem; letter-spacing:0.08em; cursor:pointer; }
+.btn-clear:hover { background:rgba(255,90,26,0.22); }
+.btn-close { padding:6px 14px; background:rgba(201,151,42,0.08); border:1px solid rgba(201,151,42,0.2); border-radius:4px; color:var(--sand-dim); font-family:'Cinzel',serif; font-size:0.62rem; letter-spacing:0.08em; cursor:pointer; }
+.btn-close:hover { background:rgba(201,151,42,0.15); }
 
 /* ALL PICKS */
 .all-picks-wrap { position:relative; z-index:1; padding:28px 24px 70px; }
 .summary-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:16px; }
 .summary-card { background:rgba(9,25,41,0.7); border:1px solid rgba(201,151,42,0.18); border-radius:6px; overflow:hidden; }
 .sc-head { padding:10px 14px; background:rgba(201,151,42,0.09); border-bottom:1px solid rgba(201,151,42,0.15); font-family:'Cinzel Decorative',serif; font-size:0.82rem; color:var(--ember); display:flex; align-items:center; justify-content:space-between; }
-.sc-submitted { font-size:0.58rem; font-family:'Cinzel',serif; color:rgba(42,158,140,0.8); letter-spacing:0.08em; }
+.sc-pts { font-family:'Cinzel Decorative',serif; font-size:1rem; color:var(--gold-light); }
 .sc-section { padding:6px 14px 3px; font-family:'Cinzel',serif; font-size:0.57rem; letter-spacing:0.28em; color:rgba(201,151,42,0.42); border-bottom:1px solid rgba(255,255,255,0.04); }
 .sc-row { display:flex; justify-content:space-between; align-items:center; padding:4px 14px; border-bottom:1px solid rgba(255,255,255,0.03); font-size:0.76rem; }
 .sc-name { color:var(--sand-dim); }
 .sc-tag { font-family:'Cinzel',serif; font-size:0.6rem; color:var(--gold); }
 .sc-winner { padding:8px 14px; text-align:center; background:linear-gradient(135deg,rgba(201,151,42,0.18),rgba(139,105,20,0.08)); border-top:1px solid rgba(201,151,42,0.25); font-family:'Cinzel',serif; font-size:0.75rem; color:var(--gold-light); }
-.sc-empty { padding:16px; text-align:center; color:rgba(238,224,196,0.28); font-style:italic; font-size:0.8rem; }
-.sc-loading { padding:24px; text-align:center; color:var(--gold); font-family:'Cinzel',serif; font-size:0.75rem; letter-spacing:0.1em; }
+.sc-loading { padding:32px; text-align:center; color:var(--sand-dim); font-size:0.85rem; font-style:italic; }
 
-/* PICKER MODAL */
-.picker-overlay { display:none; position:fixed; inset:0; background:rgba(6,17,28,0.88); z-index:400; align-items:center; justify-content:center; }
-.picker-overlay.open { display:flex; }
-.picker-modal { background:linear-gradient(135deg,#0d2234,#06111c); border:1px solid var(--gold); border-radius:8px; width:370px; max-height:78vh; display:flex; flex-direction:column; overflow:hidden; }
-.picker-head { padding:14px 18px; border-bottom:1px solid rgba(201,151,42,0.2); background:rgba(201,151,42,0.06); }
-.picker-title { font-family:'Cinzel',serif; font-size:0.85rem; color:var(--gold-light); }
-.picker-sub { font-size:0.7rem; color:var(--sand-dim); margin-top:3px; font-style:italic; }
-.picker-list { overflow-y:auto; padding:8px; display:flex; flex-direction:column; gap:3px; }
-.picker-item { display:flex; align-items:center; gap:10px; padding:9px 12px; border-radius:4px; cursor:pointer; border:1px solid rgba(255,255,255,0.06); background:rgba(12,36,56,0.5); transition:all .12s; }
-.picker-item:hover { background:rgba(201,151,42,0.1); border-color:rgba(201,151,42,0.28); }
-.picker-item.used { opacity:0.22; cursor:not-allowed; pointer-events:none; }
-.picker-pip { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
-.pip-cila { background:var(--cila); }
-.pip-kalo  { background:var(--kalo); }
-.pip-vatu  { background:var(--vatu); }
-.picker-name { font-family:'Cinzel',serif; font-size:0.74rem; color:var(--sand); }
-.picker-season { font-size:0.63rem; color:var(--sand-dim); font-style:italic; margin-top:1px; }
-.picker-foot { padding:10px 14px; border-top:1px solid rgba(201,151,42,0.18); display:flex; gap:8px; }
-.btn-clear { padding:7px 13px; background:rgba(139,32,32,0.28); border:1px solid rgba(200,50,50,0.28); border-radius:4px; color:rgba(238,224,196,0.65); font-family:'Cinzel',serif; font-size:0.63rem; cursor:pointer; }
-.btn-close { flex:1; padding:7px; background:transparent; border:1px solid rgba(201,151,42,0.28); border-radius:4px; color:var(--sand-dim); font-family:'Cinzel',serif; font-size:0.63rem; cursor:pointer; }
+/* LEADERBOARD */
+.leaderboard-wrap { position:relative; z-index:1; padding:28px 24px 70px; max-width:800px; }
+.episode-banner { font-family:'Cinzel',serif; font-size:0.65rem; letter-spacing:0.18em; color:var(--gold); background:rgba(201,151,42,0.08); border:1px solid rgba(201,151,42,0.2); border-radius:4px; padding:7px 16px; margin-bottom:20px; display:inline-block; }
+.lb-table { width:100%; border-collapse:collapse; }
+.lb-table th { font-family:'Cinzel',serif; font-size:0.6rem; letter-spacing:0.15em; color:rgba(201,151,42,0.6); padding:6px 12px; text-align:left; border-bottom:1px solid rgba(201,151,42,0.15); white-space:nowrap; }
+.lb-table th.num { text-align:right; }
+.lb-row { border-bottom:1px solid rgba(255,255,255,0.04); transition:background .12s; cursor:pointer; }
+.lb-row:hover { background:rgba(201,151,42,0.05); }
+.lb-row.expanded { background:rgba(201,151,42,0.06); }
+.lb-row td { padding:10px 12px; font-size:0.82rem; vertical-align:middle; }
+.lb-rank { font-family:'Cinzel Decorative',serif; font-size:0.8rem; color:var(--sand-dim); width:36px; }
+.lb-rank.gold   { color:#FFD700; }
+.lb-rank.silver { color:#C0C0C0; }
+.lb-rank.bronze { color:#CD7F32; }
+.lb-name { font-family:'Cinzel',serif; font-size:0.78rem; color:var(--sand); }
+.lb-pts  { font-family:'Cinzel Decorative',serif; font-size:0.9rem; color:var(--gold-light); text-align:right; white-space:nowrap; }
+.lb-pts-sub { font-family:'Cinzel',serif; font-size:0.55rem; color:rgba(238,224,196,0.3); display:block; text-align:right; }
+.lb-breakdown { display:none; background:rgba(0,0,0,0.2); }
+.lb-breakdown.open { display:table-row; }
+.lb-breakdown td { padding:10px 24px 14px; border-bottom:1px solid rgba(201,151,42,0.1); }
+.bd-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:6px; }
+.bd-item { background:rgba(201,151,42,0.07); border:1px solid rgba(201,151,42,0.15); border-radius:4px; padding:6px 10px; display:flex; justify-content:space-between; align-items:center; }
+.bd-label { font-family:'Cinzel',serif; font-size:0.58rem; letter-spacing:0.1em; color:var(--sand-dim); }
+.bd-val   { font-family:'Cinzel Decorative',serif; font-size:0.82rem; color:var(--gold-light); }
+.bd-val.zero { color:rgba(238,224,196,0.25); }
 
-::-webkit-scrollbar { width:5px; height:5px; }
-::-webkit-scrollbar-track { background:rgba(0,0,0,0.2); }
-::-webkit-scrollbar-thumb { background:rgba(201,151,42,0.28); border-radius:3px; }
+/* ADMIN */
+.admin-wrap { position:relative; z-index:1; padding:28px 24px 70px; max-width:680px; }
+.admin-lock { text-align:center; padding:60px 24px; }
+.admin-lock-title { font-family:'Cinzel Decorative',serif; font-size:1rem; color:var(--gold); margin-bottom:8px; }
+.admin-lock-sub { font-size:0.8rem; color:var(--sand-dim); margin-bottom:20px; }
+.admin-pw-row { display:flex; gap:8px; justify-content:center; }
+.admin-pw-input { padding:8px 14px; background:rgba(12,36,56,0.8); border:1px solid rgba(201,151,42,0.3); border-radius:4px; color:var(--sand); font-family:'Barlow Condensed',sans-serif; font-size:0.9rem; outline:none; width:220px; }
+.admin-pw-input:focus { border-color:var(--gold); }
+.btn-admin { padding:8px 18px; background:rgba(201,151,42,0.15); border:1px solid rgba(201,151,42,0.35); border-radius:4px; color:var(--gold-light); font-family:'Cinzel',serif; font-size:0.68rem; letter-spacing:0.1em; cursor:pointer; transition:all .15s; }
+.btn-admin:hover { background:rgba(201,151,42,0.25); }
+.btn-admin.danger { background:rgba(180,30,30,0.15); border-color:rgba(180,30,30,0.35); color:#f08080; }
+.btn-admin.danger:hover { background:rgba(180,30,30,0.28); }
+.btn-admin.primary { background:linear-gradient(135deg,rgba(255,90,26,0.7),rgba(255,140,66,0.6)); border-color:rgba(255,90,26,0.5); color:white; }
+.btn-admin.primary:hover { filter:brightness(1.1); }
+.admin-panel { display:none; }
+.admin-panel.open { display:block; }
+.admin-section { background:rgba(9,25,41,0.7); border:1px solid rgba(201,151,42,0.18); border-radius:6px; margin-bottom:18px; overflow:hidden; }
+.admin-section-head { padding:10px 16px; background:rgba(201,151,42,0.08); border-bottom:1px solid rgba(201,151,42,0.15); font-family:'Cinzel',serif; font-size:0.68rem; letter-spacing:0.14em; color:var(--gold); }
+.admin-section-body { padding:14px 16px; display:flex; flex-direction:column; gap:10px; }
+.admin-row { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+.admin-label { font-family:'Cinzel',serif; font-size:0.62rem; color:var(--sand-dim); letter-spacing:0.08em; min-width:110px; }
+.admin-select, .admin-input { padding:6px 12px; background:rgba(12,36,56,0.8); border:1px solid rgba(201,151,42,0.25); border-radius:4px; color:var(--sand); font-family:'Barlow Condensed',sans-serif; font-size:0.85rem; outline:none; flex:1; min-width:160px; }
+.admin-select:focus, .admin-input:focus { border-color:var(--gold); }
+.admin-select option { background:#091929; }
+.admin-status { font-family:'Cinzel',serif; font-size:0.65rem; padding:6px 12px; border-radius:4px; margin-top:8px; display:none; }
+.admin-status.ok  { display:block; background:rgba(42,158,140,0.15); border:1px solid rgba(42,158,140,0.3); color:#5dd4c0; }
+.admin-status.err { display:block; background:rgba(180,30,30,0.15); border:1px solid rgba(180,30,30,0.3); color:#f08080; }
+.castaway-chips { display:flex; flex-wrap:wrap; gap:5px; margin-top:4px; }
+.chip { padding:3px 10px; border-radius:12px; font-family:'Barlow Condensed',sans-serif; font-size:0.72rem; cursor:pointer; border:1px solid transparent; transition:all .12s; user-select:none; }
+.chip-cila { background:rgba(232,98,26,0.2); border-color:rgba(232,98,26,0.3); color:#f9a07a; }
+.chip-kalo { background:rgba(42,158,140,0.2); border-color:rgba(42,158,140,0.3); color:#7dd8cc; }
+.chip-vatu { background:rgba(155,79,200,0.2); border-color:rgba(155,79,200,0.3); color:#c89ae8; }
+.chip.selected { outline:2px solid rgba(255,255,255,0.7); outline-offset:1px; filter:brightness(1.3); }
+.scoring-legend { background:rgba(9,25,41,0.5); border:1px solid rgba(201,151,42,0.15); border-radius:6px; padding:14px 18px; margin-bottom:20px; display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:8px; }
+.sl-item { display:flex; justify-content:space-between; font-size:0.78rem; }
+.sl-label { color:var(--sand-dim); }
+.sl-pts { font-family:'Cinzel',serif; color:var(--gold); font-size:0.72rem; }
 </style>
 </head>
 <body>
@@ -241,7 +264,7 @@ header {
 <div class="name-bar">
   <span class="name-label">YOUR NAME</span>
   <input class="name-input" id="playerName" type="text" placeholder="Enter your name…" maxlength="30">
-  <span class="name-label" style="margin-left:8px">POOL</span>
+  <span class="name-label" style="margin-left:4px">POOL</span>
   <select class="group-select" id="groupSelect" onchange="onGroupChange()">
     <option value="friends">Friends</option>
     <option value="ddx">DDx</option>
@@ -253,85 +276,149 @@ header {
 <!-- NAV -->
 <div class="nav-bar">
   <div class="nav-tab active" id="navBracket" onclick="showView('bracket')">My Bracket</div>
-  <div class="nav-tab"       id="navAll"     onclick="showView('all')">All Picks</div>
+  <div class="nav-tab"        id="navAll"     onclick="showView('all')">All Picks</div>
+  <div class="nav-tab"        id="navScores"  onclick="showView('scores')">🏆 Scores</div>
+  <div class="nav-tab"        id="navAdmin"   onclick="showView('admin')">⚙ Admin</div>
 </div>
 
-<!-- INSTRUCTION -->
-<div class="instr-bar">
+<!-- INSTRUCTION BAR -->
+<div class="instr-bar" id="instrBar">
   <strong>Tribes:</strong> Click a name to mark as pre-merge boot (strikethrough). &nbsp;|&nbsp;
   <strong>Bracket:</strong> Click any gold slot to pick a castaway — Merge → Final Four → 🔥 Fire → Jury → Final Tribal. &nbsp;|&nbsp;
-  <strong>Submit</strong> your bracket when done to save it to the shared sheet.
+  <strong>Pool:</strong> Select Friends or DDx, then <strong>Submit</strong> your bracket.
 </div>
 
 <!-- BRACKET VIEW -->
 <div id="bracketView">
-<div class="bracket-scroll">
-<div class="bracket">
-
-  <!-- TRIBES -->
+<div class="bracket-scroll"><div class="bracket">
   <div class="tribe-col" id="tribeCol"></div>
-
-  <!-- connector -->
-  <div class="conn" style="--after-top:33%">
-    <style>.conn::after{top:var(--after-top,30%)}</style>
-  </div>
-
-  <!-- MERGE (16 slots) -->
+  <div class="conn" style="--after-top:33%"><style>.conn::after{top:var(--after-top,30%)}</style></div>
   <div class="stage-col" style="width:162px">
     <div class="stage-label">Merge</div>
     <div class="slots-stack" id="mergeSlots"></div>
   </div>
-
-  <!-- connector -->
   <div class="conn mid"></div>
-
-  <!-- RIGHT SIDE -->
-  <div style="display:flex;flex-direction:column;flex-shrink:0">
-
-    <!-- TOP: Final Four + connector + Final Tribal + Trophies -->
-    <div style="display:flex;align-items:flex-start">
-
-      <!-- Final Four + Fire + Jury -->
-      <div class="stage-col" style="width:162px">
-        <div class="stage-label">Final Four</div>
-        <div class="slots-stack" id="ffSlots"></div>
-
-        <div class="fire-divider" style="margin-top:12px">
-          <div class="fire-line"></div>
-          <div class="fire-text">🔥 LOSES FIRE</div>
-          <div class="fire-line"></div>
-        </div>
-        <div id="fireSlot"></div>
-
-        <div class="stage-label" style="margin-top:16px">Jury</div>
-        <div class="jury-grid" id="jurySlots"></div>
-      </div>
-
-      <!-- connector -->
-      <div class="conn top"></div>
-
-      <!-- Final Tribal + Trophies -->
-      <div class="stage-col" style="width:162px">
-        <div class="stage-label">Final Tribal</div>
-        <div id="ftSlots"></div>
-        <div class="trophy-stack">
-          <div style="font-size:2rem" class="glow-trophy">🏆</div>
-          <div style="font-size:1.5rem;opacity:0.65">🥈</div>
-          <div style="font-size:1.2rem;opacity:0.45">🥉</div>
-        </div>
-      </div>
-
-    </div>
+  <div class="stage-col" style="width:162px;padding-top:60px">
+    <div class="stage-label">Final Four</div>
+    <div class="slots-stack" id="ffSlots"></div>
+    <div class="fire-divider"><div class="fire-line"></div><div class="fire-text">🔥 FIRE</div><div class="fire-line"></div></div>
+    <div class="slots-stack" id="fireSlot"></div>
   </div>
+  <div class="conn top"></div>
+  <div class="stage-col">
+    <div class="stage-label">Jury (pick 9)</div>
+    <div class="jury-grid" id="jurySlots"></div>
+    <div style="height:14px"></div>
+    <div class="stage-label">Final Tribal</div>
+    <div id="ftSlots"></div>
 
-</div>
-</div>
+  </div>
+</div></div>
 </div>
 
 <!-- ALL PICKS VIEW -->
 <div id="allView" style="display:none">
   <div class="all-picks-wrap">
     <div id="summaryGrid" class="summary-grid"></div>
+  </div>
+</div>
+
+<!-- SCORES VIEW -->
+<div id="scoresView" style="display:none">
+  <div class="leaderboard-wrap">
+    <div class="scoring-legend">
+      <div class="sl-item"><span class="sl-label">✅ Correct merge pick</span><span class="sl-pts">2 pts</span></div>
+      <div class="sl-item"><span class="sl-label">⚖️ Merge pick → Jury</span><span class="sl-pts">+4 pts</span></div>
+      <div class="sl-item"><span class="sl-label">4️⃣ Correct Final Four (2-4)</span><span class="sl-pts">+16 pts</span></div>
+      <div class="sl-item"><span class="sl-label">🏆 Correct Sole Survivor</span><span class="sl-pts">+24 pts</span></div>
+    </div>
+    <div id="episodeBanner" class="episode-banner" style="display:none"></div>
+    <div id="lbLoading" class="sc-loading">Loading scores…</div>
+    <table class="lb-table" id="lbTable" style="display:none">
+      <thead>
+        <tr>
+          <th style="width:36px">#</th>
+          <th>Player</th>
+          <th class="num">Merge<br><small style="opacity:.5;font-weight:normal">2 pts ea</small></th>
+          <th class="num">Jury<br><small style="opacity:.5;font-weight:normal">+4 pts ea</small></th>
+          <th class="num">F4<br><small style="opacity:.5;font-weight:normal">+16 pts ea</small></th>
+          <th class="num">Winner<br><small style="opacity:.5;font-weight:normal">+24 pts</small></th>
+          <th class="num">Total</th>
+        </tr>
+      </thead>
+      <tbody id="lbBody"></tbody>
+    </table>
+    <div style="margin-top:14px;font-family:'Cinzel',serif;font-size:0.58rem;color:rgba(238,224,196,0.2);letter-spacing:0.1em">CLICK ANY ROW FOR FULL BREAKDOWN</div>
+  </div>
+</div>
+
+<!-- ADMIN VIEW -->
+<div id="adminView" style="display:none">
+  <div class="admin-wrap">
+    <div class="admin-lock" id="adminLock">
+      <div class="admin-lock-title">Admin Access</div>
+      <div class="admin-lock-sub">Enter the admin password to update episode results</div>
+      <div class="admin-pw-row">
+        <input class="admin-pw-input" id="adminPwInput" type="password" placeholder="Password…"
+               onkeydown="if(event.key==='Enter')checkAdminPw()">
+        <button class="btn-admin" onclick="checkAdminPw()">Enter</button>
+      </div>
+      <div id="adminPwErr" style="margin-top:10px;font-family:'Cinzel',serif;font-size:0.65rem;color:#f08080;display:none">Incorrect password</div>
+    </div>
+
+    <div class="admin-panel" id="adminPanel">
+      <div class="admin-section">
+        <div class="admin-section-head">EPISODE</div>
+        <div class="admin-section-body">
+          <div class="admin-row">
+            <span class="admin-label">Episode #</span>
+            <input class="admin-input" id="adminEpisode" type="number" min="1" max="15" placeholder="e.g. 3" style="max-width:90px">
+          </div>
+        </div>
+      </div>
+
+      <div class="admin-section">
+        <div class="admin-section-head">ACTUAL MERGE SURVIVORS</div>
+        <div class="admin-section-body">
+          <div style="font-family:'Cinzel',serif;font-size:0.6rem;color:var(--sand-dim);letter-spacing:0.06em">Tap to highlight = confirmed merge survivor (earns players 2 pts each correct pick)</div>
+          <div class="castaway-chips" id="mergeChips"></div>
+        </div>
+      </div>
+
+      <div class="admin-section">
+        <div class="admin-section-head">ACTUAL JURY MEMBERS</div>
+        <div class="admin-section-body">
+          <div style="font-family:'Cinzel',serif;font-size:0.6rem;color:var(--sand-dim);letter-spacing:0.06em">Only merge survivors shown. Jury earns players +4 pts per correct pick.</div>
+          <div class="castaway-chips" id="juryChips"></div>
+        </div>
+      </div>
+
+      <div class="admin-section">
+        <div class="admin-section-head">ACTUAL FINAL FOUR</div>
+        <div class="admin-section-body">
+          <div style="font-family:'Cinzel',serif;font-size:0.6rem;color:var(--sand-dim);letter-spacing:0.06em">Merge survivors not on jury. Earns players +16 pts each (spots 2-4).</div>
+          <div class="castaway-chips" id="ffChips"></div>
+        </div>
+      </div>
+
+      <div class="admin-section">
+        <div class="admin-section-head">SOLE SURVIVOR</div>
+        <div class="admin-section-body">
+          <div class="admin-row">
+            <span class="admin-label">Winner</span>
+            <select class="admin-select" id="adminWinner">
+              <option value="">— not yet —</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:4px">
+        <button class="btn-admin primary" onclick="saveGameState()">💾 Save Game State</button>
+        <button class="btn-admin danger" onclick="if(confirm('Reset all game state?'))clearGameState()">✕ Reset</button>
+      </div>
+      <div class="admin-status" id="adminStatus"></div>
+    </div>
   </div>
 </div>
 
@@ -351,59 +438,101 @@ header {
 </div>
 
 <script>
-// ══════════════════════════════════════════════
-// ⚙️  PASTE YOUR APPS SCRIPT URL HERE
-// ══════════════════════════════════════════════
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwkJTmYnB0g7DulwZ5aGmBXsvX5B3lqxxgcTb50RIGebiSjZpJPwI3UsMHRK2Q1dcOt/exec';
+// ══════════════════════════════════════════════════════
+// CONFIG
+// ══════════════════════════════════════════════════════
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyWA4M0vWwY0HXpGseNcJpHX71GZJVJj4Jp1knklptlH8bZfsZRMq23CwBazdP8EJv7/exec';
+const ADMIN_PASSWORD  = 'survivor50';  // ← change this before deploying!
 
-// ══════════════════════════════════════════════
-// CAST DATA
-// ══════════════════════════════════════════════
+// ══════════════════════════════════════════════════════
+// SCORING
+// ══════════════════════════════════════════════════════
+const PTS_MERGE  = 2;
+const PTS_JURY   = 4;   // additional pts when a merge pick makes jury
+const PTS_FF     = 16;  // for F4 spots 2-4
+const PTS_WINNER = 24;  // for Sole Survivor
+
+function calcScore(bracket, gs) {
+  const pickedMerge  = (bracket.merge          || '').split(', ').filter(Boolean);
+  const pickedFF     = (bracket.final_four      || '').split(', ').filter(Boolean);
+  const pickedWinner =  bracket.final_tribal_1st || '';
+
+  const actualMerge  = new Set(gs.merge     || []);
+  const actualJury   = new Set(gs.jury      || []);
+  const actualFF     = new Set(gs.finalFour || []);
+  const actualWinner =  gs.winner || '';
+
+  // 2 pts per correct merge pick
+  const mergeHits = pickedMerge.filter(n => actualMerge.has(n));
+  const mergePts  = mergeHits.length * PTS_MERGE;
+
+  // +4 pts per merge pick who lands on jury
+  const juryHits = pickedMerge.filter(n => actualJury.has(n));
+  const juryPts  = juryHits.length * PTS_JURY;
+
+  // +16 pts per correctly picked F4 member who is NOT the winner
+  const ffHits = pickedFF.filter(n => actualFF.has(n) && n !== actualWinner);
+  const ffPts  = ffHits.length * PTS_FF;
+
+  // +24 pts if winner correct
+  const winnerCorrect = !!(pickedWinner && pickedWinner === actualWinner);
+  const winnerPts = winnerCorrect ? PTS_WINNER : 0;
+
+  return {
+    mergePts, juryPts, ffPts, winnerPts,
+    total: mergePts + juryPts + ffPts + winnerPts,
+    mergeHits: mergeHits.length,
+    juryHits:  juryHits.length,
+    ffHits:    ffHits.length,
+    winnerCorrect,
+  };
+}
+
+// ══════════════════════════════════════════════════════
+// CAST
+// ══════════════════════════════════════════════════════
 const CAST = [
-  // CILA (orange)
-  {name:'Joe Hunter',          season:'Survivor 48',                    tribe:'cila'},
-  {name:'Savannah Louie',      season:'Survivor 49',                    tribe:'cila'},
-  {name:'Christian Hubicki',   season:'David vs. Goliath',              tribe:'cila'},
-  {name:'Cirie Fields',        season:'Panama · Micronesia · HvV · GC', tribe:'cila'},
-  {name:'Ozzy Lusth',          season:'Cook Islands · Micronesia · SP', tribe:'cila'},
-  {name:'Emily Flippen',       season:'Survivor 45',                    tribe:'cila'},
-  {name:'Rick Devens',         season:'Edge of Extinction',             tribe:'cila'},
-  {name:'Jenna Lewis',         season:'Borneo · All-Stars',             tribe:'cila'},
-  // KALO (teal)
-  {name:'Jonathan Young',      season:'Survivor 42',                    tribe:'kalo'},
-  {name:'Dee Valladares',      season:'Survivor 45',                    tribe:'kalo'},
-  {name:'Mike White',          season:'David vs. Goliath',              tribe:'kalo'},
-  {name:'Kamilla Karthigesu',  season:'Survivor 48',                    tribe:'kalo'},
-  {name:'Charlie Davis',       season:'Survivor 46',                    tribe:'kalo'},
-  {name:'Tiffany Nicole Ervin',season:'Survivor 46',                    tribe:'kalo'},
-  {name:'Coach Wade',          season:'Tocantins · HvV · South Pacific',tribe:'kalo'},
-  {name:'Chrissy Hofbeck',     season:'Heroes vs. Healers vs. Hustlers',tribe:'kalo'},
-  // VATU (purple)
+  {name:'Joe Hunter',          season:'Survivor 48',                     tribe:'cila'},
+  {name:'Savannah Louie',      season:'Survivor 49',                     tribe:'cila'},
+  {name:'Christian Hubicki',   season:'David vs. Goliath',               tribe:'cila'},
+  {name:'Cirie Fields',        season:'Panama · Micronesia · HvV · GC',  tribe:'cila'},
+  {name:'Ozzy Lusth',          season:'Cook Islands · Micronesia · SP',  tribe:'cila'},
+  {name:'Emily Flippen',       season:'Survivor 45',                     tribe:'cila'},
+  {name:'Rick Devens',         season:'Edge of Extinction',              tribe:'cila'},
+  {name:'Jenna Lewis',         season:'Borneo · All-Stars',              tribe:'cila'},
+  {name:'Jonathan Young',      season:'Survivor 42',                     tribe:'kalo'},
+  {name:'Dee Valladares',      season:'Survivor 45',                     tribe:'kalo'},
+  {name:'Mike White',          season:'David vs. Goliath',               tribe:'kalo'},
+  {name:'Kamilla Karthigesu',  season:'Survivor 48',                     tribe:'kalo'},
+  {name:'Charlie Davis',       season:'Survivor 46',                     tribe:'kalo'},
+  {name:'Tiffany Nicole Ervin',season:'Survivor 46',                     tribe:'kalo'},
+  {name:'Coach Wade',          season:'Tocantins · HvV · South Pacific', tribe:'kalo'},
+  {name:'Chrissy Hofbeck',     season:'Heroes vs. Healers vs. Hustlers', tribe:'kalo'},
   {name:'Colby Donaldson',     season:'Australian Outback · All-Stars · HvV', tribe:'vatu'},
-  {name:'Genevieve Mushaluk',  season:'Survivor 47',                    tribe:'vatu'},
-  {name:'Rizo Velovic',        season:'Survivor 49',                    tribe:'vatu'},
-  {name:'Angelina Keeley',     season:'David vs. Goliath',              tribe:'vatu'},
-  {name:'Q Burdette',          season:'Survivor 46',                    tribe:'vatu'},
-  {name:'Stephenie LaGrossa',  season:'Palau · Guatemala · HvV',       tribe:'vatu'},
-  {name:'Kyle Fraser',         season:'Survivor 48',                    tribe:'vatu'},
+  {name:'Genevieve Mushaluk',  season:'Survivor 47',                     tribe:'vatu'},
+  {name:'Rizo Velovic',        season:'Survivor 49',                     tribe:'vatu'},
+  {name:'Angelina Keeley',     season:'David vs. Goliath',               tribe:'vatu'},
+  {name:'Q Burdette',          season:'Survivor 46',                     tribe:'vatu'},
+  {name:'Stephenie LaGrossa',  season:'Palau · Guatemala · HvV',        tribe:'vatu'},
+  {name:'Kyle Fraser',         season:'Survivor 48',                     tribe:'vatu'},
   {name:'Aubry Bracco',        season:'Kaôh Rōng · Game Changers · EoE',tribe:'vatu'},
 ];
-
 const TRIBE_INFO = {
-  cila: {label:'Cila', cls:'tm-cila', hdr:'tribe-header-cila'},
-  kalo: {label:'Kalo', cls:'tm-kalo', hdr:'tribe-header-kalo'},
-  vatu: {label:'Vatu', cls:'tm-vatu', hdr:'tribe-header-vatu'},
+  cila:{label:'Cila',cls:'tm-cila',hdr:'tribe-header-cila'},
+  kalo:{label:'Kalo',cls:'tm-kalo',hdr:'tribe-header-kalo'},
+  vatu:{label:'Vatu',cls:'tm-vatu',hdr:'tribe-header-vatu'},
 };
 
-// ══════════════════════════════════════════════
-// STATE  (localStorage per-device draft)
-// ══════════════════════════════════════════════
+// ══════════════════════════════════════════════════════
+// STATE
+// ══════════════════════════════════════════════════════
 let currentGroup  = localStorage.getItem('s50_group') || 'friends';
-let draft = loadDraft();
+let draft         = loadDraft();
 let activeSlotKey = null;
 let currentView   = 'bracket';
+let gameState     = { episode:0, merge:[], jury:[], finalFour:[], winner:'' };
+let adminUnlocked = false;
 
-// Restore group selection on load
 document.getElementById('groupSelect').value = currentGroup;
 
 function lsKey() { return 's50_draft_' + currentGroup; }
@@ -412,340 +541,387 @@ function onGroupChange() {
   currentGroup = document.getElementById('groupSelect').value;
   localStorage.setItem('s50_group', currentGroup);
   draft = loadDraft();
-  setStatus('', '');
+  setStatus('','');
   renderAll();
-  if (currentView === 'all') loadAllPicks();
+  if (currentView==='all')    loadAllPicks();
+  if (currentView==='scores') loadScores();
 }
 
 function loadDraft() {
-  try { return JSON.parse(localStorage.getItem(lsKey())) || newDraft(); }
-  catch { return newDraft(); }
+  try { return JSON.parse(localStorage.getItem(lsKey())) || newDraft(); } catch { return newDraft(); }
 }
 function newDraft() {
-  return {
-    premerge: [],
-    merge:    new Array(16).fill(null),
-    ff:       new Array(4).fill(null),
-    fire:     null,
-    ft:       new Array(3).fill(null),
-    jury:     new Array(9).fill(null),
-  };
+  return { premerge:[], merge:new Array(16).fill(null), ff:new Array(4).fill(null),
+           fire:null, ft:new Array(3).fill(null), jury:new Array(9).fill(null) };
 }
 function saveDraft() { localStorage.setItem(lsKey(), JSON.stringify(draft)); }
-
 function allSlotNames() {
-  return new Set([
-    ...draft.merge.filter(Boolean),
-    ...draft.ff.filter(Boolean),
-    draft.fire,
-    ...draft.ft.filter(Boolean),
-    ...draft.jury.filter(Boolean),
-  ].filter(Boolean));
+  return new Set([...draft.merge,...draft.ff,draft.fire,...draft.ft,...draft.jury].filter(Boolean));
 }
 
-// ══════════════════════════════════════════════
-// VIEW TOGGLE
-// ══════════════════════════════════════════════
+// ══════════════════════════════════════════════════════
+// VIEWS
+// ══════════════════════════════════════════════════════
 function showView(v) {
   currentView = v;
-  document.getElementById('bracketView').style.display = v==='bracket' ? '' : 'none';
-  document.getElementById('allView').style.display     = v==='all'     ? '' : 'none';
-  document.getElementById('navBracket').className = 'nav-tab'+(v==='bracket'?' active':'');
-  document.getElementById('navAll').className     = 'nav-tab'+(v==='all'?' active':'');
-  if (v==='all') loadAllPicks();
+  ['bracket','all','scores','admin'].forEach(id => {
+    document.getElementById(id+'View').style.display = v===id?'':'none';
+    const cap = id.charAt(0).toUpperCase()+id.slice(1);
+    const tab = document.getElementById('nav'+cap);
+    if (tab) tab.className = 'nav-tab'+(v===id?' active':'');
+  });
+  document.getElementById('instrBar').style.display = v==='bracket'?'':'none';
+  if (v==='all')    loadAllPicks();
+  if (v==='scores') loadScores();
+  if (v==='admin')  initAdmin();
 }
 
-// ══════════════════════════════════════════════
+// ══════════════════════════════════════════════════════
 // TRIBE COLUMN
-// ══════════════════════════════════════════════
+// ══════════════════════════════════════════════════════
 function renderTribeCol() {
   const premerge  = new Set(draft.premerge);
   const inBracket = allSlotNames();
   document.getElementById('tribeCol').innerHTML = ['cila','kalo','vatu'].map(t => {
     const info = TRIBE_INFO[t];
-    const members = CAST.filter(c => c.tribe===t).map(c => {
-      const isPre = premerge.has(c.name);
-      const isIn  = inBracket.has(c.name);
+    const members = CAST.filter(c=>c.tribe===t).map(c => {
+      const isPre = premerge.has(c.name), isIn = inBracket.has(c.name);
       return `<div class="tribe-member ${info.cls} ${isPre?'pre-merge':''} ${isIn&&!isPre?'in-bracket':''}"
-               onclick="togglePremerge('${esc(c.name)}')"
-               title="${isPre?'Pre-merge boot — click to restore':isIn?'Placed in bracket':'Click to mark as pre-merge boot'}"
-              >${c.name}</div>`;
+               onclick="togglePremerge('${esc(c.name)}')">${c.name}</div>`;
     }).join('');
     return `<div class="tribe-block">
       <div class="tribe-header ${info.hdr}">${info.label}</div>
-      <div class="tribe-members">${members}</div>
-    </div>`;
+      <div class="tribe-members">${members}</div></div>`;
   }).join('');
 }
-
 function togglePremerge(name) {
   const set = new Set(draft.premerge);
-  if (set.has(name)) {
-    set.delete(name);
-  } else {
+  if (set.has(name)) { set.delete(name); }
+  else {
     set.add(name);
-    draft.merge = draft.merge.map(n => n===name?null:n);
-    draft.ff    = draft.ff.map(n => n===name?null:n);
-    if (draft.fire===name) draft.fire = null;
-    draft.ft   = draft.ft.map(n => n===name?null:n);
-    draft.jury = draft.jury.map(n => n===name?null:n);
+    ['merge','ff','ft','jury'].forEach(k => { draft[k]=draft[k].map(n=>n===name?null:n); });
+    if (draft.fire===name) draft.fire=null;
   }
-  draft.premerge = [...set];
-  saveDraft(); renderAll();
+  draft.premerge=[...set]; saveDraft(); renderAll();
 }
 
-// ══════════════════════════════════════════════
-// BRACKET SLOTS
-// ══════════════════════════════════════════════
+// ══════════════════════════════════════════════════════
+// SLOTS
+// ══════════════════════════════════════════════════════
+function tribeOf(name) { const c=CAST.find(x=>x.name===name); return c?c.tribe:null; }
+function slotHTML(key, name, placeholder, extraClass='') {
+  if (name) {
+    const t=tribeOf(name), dot=t?`<div class="sdot sdot-${t}"></div>`:'';
+    return `<div class="slot filled ${extraClass}" onclick="openPicker('${key}')">
+      <div class="slot-inner">${dot}<span class="slot-name">${name}</span></div></div>`;
+  }
+  return `<div class="slot ${extraClass}" onclick="openPicker('${key}')">${placeholder}</div>`;
+}
 function renderSlots() {
-  document.getElementById('mergeSlots').innerHTML =
-    draft.merge.map((v,i) => slotHTML(v,`merge-${i}`,'Pick merge survivor')).join('');
-
-  document.getElementById('ffSlots').innerHTML =
-    draft.ff.map((v,i) => slotHTML(v,`ff-${i}`,'Pick Final 4')).join('');
-
-  document.getElementById('fireSlot').innerHTML =
-    slotHTML(draft.fire,'fire-0','Who loses fire? (4th place)');
-
-  document.getElementById('jurySlots').innerHTML =
-    draft.jury.map((v,i) => slotHTML(v,`jury-${i}`,'Jury member')).join('');
-
-  document.getElementById('ftSlots').innerHTML = draft.ft.map((v,i) =>
-    `<div class="podium-row">
-      <span class="podium-icon">${['🥇','🥈','🥉'][i]}</span>
-      ${slotHTML(v,`ft-${i}`,['Winner (1st place)','Runner-up (2nd)','3rd place'][i], i===0)}
-    </div>`
-  ).join('');
+  document.getElementById('mergeSlots').innerHTML = draft.merge.map((_,i)=>slotHTML('merge-'+i,draft.merge[i],'pick survivor')).join('');
+  document.getElementById('ffSlots').innerHTML    = draft.ff.map((_,i)=>slotHTML('ff-'+i,draft.ff[i],'final four')).join('');
+  document.getElementById('fireSlot').innerHTML   = slotHTML('fire-0',draft.fire,'🔥 loses fire');
+  document.getElementById('jurySlots').innerHTML  = draft.jury.map((_,i)=>slotHTML('jury-'+i,draft.jury[i],'jury')).join('');
+  const icons=['🥇','🥈','🥉'], labels=['🥇 Sole Survivor','🥈 2nd Place','🥉 3rd Place'];
+  document.getElementById('ftSlots').innerHTML = draft.ft.map((_,i)=>`
+    <div class="podium-row"><span class="podium-icon">${icons[i]}</span>
+      ${slotHTML('ft-'+i,draft.ft[i],labels[i],'winner-slot')}</div>`).join('');
 }
 
-function slotHTML(value, key, placeholder, isWinner=false) {
-  const winCls  = isWinner ? ' winner-slot' : '';
-  const filCls  = value    ? ' filled'       : '';
-  const inner   = value
-    ? `<div class="slot-inner"><div class="sdot sdot-${CAST.find(c=>c.name===value)?.tribe||'cila'}"></div><span class="slot-name">${value}</span></div>`
-    : placeholder;
-  return `<div class="slot${winCls}${filCls}" onclick="openPicker('${key}')">${inner}</div>`;
-}
-
-// ══════════════════════════════════════════════
+// ══════════════════════════════════════════════════════
 // PICKER
-// ══════════════════════════════════════════════
-function openPicker(slotKey) {
-  activeSlotKey = slotKey;
-  const [group] = slotKey.split('-');
-  const premerge = new Set(draft.premerge);
-  const mergeSet = new Set(draft.merge.filter(Boolean));
-  const ffSet    = new Set(draft.ff.filter(Boolean));
-  const fireLoser = draft.fire;
-
-  let eligible=[], title='', sub='';
-  const idx = parseInt(slotKey.split('-')[1]);
-
-  if (group==='merge') {
-    eligible = CAST.filter(c => !premerge.has(c.name));
-    title='Pick a Merge Survivor'; sub='Anyone not marked as a pre-merge boot';
-  } else if (group==='ff') {
-    eligible = CAST.filter(c => mergeSet.has(c.name));
-    title='Pick a Final Four Castaway'; sub='Must be one of your merge survivors';
-    if (!eligible.length) { alert('Fill in Merge slots first!'); return; }
-  } else if (group==='fire') {
-    eligible = CAST.filter(c => ffSet.has(c.name));
-    title='🔥 Who Loses the Fire Challenge?'; sub='The F4 castaway voted out at fire making';
-    if (!eligible.length) { alert('Fill in Final Four slots first!'); return; }
-  } else if (group==='ft') {
-    eligible = CAST.filter(c => ffSet.has(c.name) && c.name!==fireLoser);
-    title=['Pick the Winner','Pick 2nd Place','Pick 3rd Place'][idx];
-    sub='Must be a Final Four castaway (not the fire loser)';
-    if (!eligible.length) { alert('Fill in Final Four and Fire slots first!'); return; }
-  } else if (group==='jury') {
-    eligible = CAST.filter(c => mergeSet.has(c.name));
-    title='Pick a Jury Member'; sub='Must be one of your merge survivors';
-    if (!eligible.length) { alert('Fill in Merge slots first!'); return; }
-  }
-
-  // Within-group duplicates
-  const usedInGroup = new Set();
-  if (group==='merge') draft.merge.forEach((n,i)=>{ if(n&&i!==idx) usedInGroup.add(n); });
-  else if (group==='ff')   draft.ff.forEach((n,i)=>{ if(n&&i!==idx) usedInGroup.add(n); });
-  else if (group==='ft')   draft.ft.forEach((n,i)=>{ if(n&&i!==idx) usedInGroup.add(n); });
-  else if (group==='jury') draft.jury.forEach((n,i)=>{ if(n&&i!==idx) usedInGroup.add(n); });
-
-  document.getElementById('pickerTitle').textContent = title;
-  document.getElementById('pickerSub').textContent   = sub;
+// ══════════════════════════════════════════════════════
+function openPicker(key) {
+  activeSlotKey = key;
+  const [group] = key.split('-');
+  const titles = {merge:'Merge Pick',ff:'Final Four Pick',fire:'Loses Fire Making',jury:'Jury Pick',ft:'Final Tribal Pick'};
+  document.getElementById('pickerTitle').textContent = titles[group]||'Pick a Castaway';
+  const premerge=new Set(draft.premerge), used=allSlotNames();
+  let eligible = CAST.filter(c=>!premerge.has(c.name));
+  if (group==='fire'||group==='ft') eligible=eligible.filter(c=>draft.ff.includes(c.name));
+  document.getElementById('pickerSub').textContent =
+    (group==='fire'||group==='ft')?'Only Final Four eligible':'Greyed out = already placed';
   document.getElementById('pickerList').innerHTML = eligible.length
-    ? eligible.map(c => `
-        <div class="picker-item ${usedInGroup.has(c.name)?'used':''}"
-             onclick="${usedInGroup.has(c.name)?'':  `pickCastaway('${esc(c.name)}')`}">
-          <div class="picker-pip pip-${c.tribe}"></div>
-          <div>
-            <div class="picker-name">${c.name}</div>
-            <div class="picker-season">${c.season}</div>
-          </div>
-        </div>`).join('')
+    ? eligible.map(c=>`<div class="picker-item ${used.has(c.name)?'used':''}"
+        onclick="${used.has(c.name)?'': `pickCastaway('${esc(c.name)}')`}">
+        <div class="picker-pip pip-${c.tribe}"></div>
+        <div><div class="picker-name">${c.name}</div><div class="picker-season">${c.season}</div></div>
+      </div>`).join('')
     : `<div style="padding:20px;text-align:center;color:var(--sand-dim);font-style:italic">No eligible castaways yet.</div>`;
-
   document.getElementById('pickerOverlay').classList.add('open');
 }
-
-function closePicker() {
-  document.getElementById('pickerOverlay').classList.remove('open');
-  activeSlotKey = null;
-}
-
+function closePicker() { document.getElementById('pickerOverlay').classList.remove('open'); activeSlotKey=null; }
 function clearSlot() {
-  if (!activeSlotKey) { closePicker(); return; }
-  const [group, idxStr] = activeSlotKey.split('-');
-  const idx = parseInt(idxStr);
-  if (group==='merge')      draft.merge[idx] = null;
-  else if (group==='ff')    draft.ff[idx]    = null;
-  else if (group==='fire')  draft.fire       = null;
-  else if (group==='ft')    draft.ft[idx]    = null;
-  else if (group==='jury')  draft.jury[idx]  = null;
+  if (!activeSlotKey){closePicker();return;}
+  const [g,i]=activeSlotKey.split('-'), idx=parseInt(i);
+  if(g==='merge')draft.merge[idx]=null; else if(g==='ff')draft.ff[idx]=null;
+  else if(g==='fire')draft.fire=null; else if(g==='ft')draft.ft[idx]=null;
+  else if(g==='jury')draft.jury[idx]=null;
   saveDraft(); closePicker(); renderAll();
 }
-
 function pickCastaway(name) {
   if (!activeSlotKey) return;
-  const [group, idxStr] = activeSlotKey.split('-');
-  const idx = parseInt(idxStr);
-  if (group==='merge')      draft.merge[idx] = name;
-  else if (group==='ff')    draft.ff[idx]    = name;
-  else if (group==='fire')  draft.fire       = name;
-  else if (group==='ft')    draft.ft[idx]    = name;
-  else if (group==='jury')  draft.jury[idx]  = name;
+  const [g,i]=activeSlotKey.split('-'), idx=parseInt(i);
+  if(g==='merge')draft.merge[idx]=name; else if(g==='ff')draft.ff[idx]=name;
+  else if(g==='fire')draft.fire=name; else if(g==='ft')draft.ft[idx]=name;
+  else if(g==='jury')draft.jury[idx]=name;
   saveDraft(); closePicker(); renderAll();
 }
 
-// ══════════════════════════════════════════════
-// GOOGLE SHEETS SUBMIT
-// ══════════════════════════════════════════════
+// ══════════════════════════════════════════════════════
+// SUBMIT
+// ══════════════════════════════════════════════════════
 async function submitToSheets() {
   const name = document.getElementById('playerName').value.trim();
   if (!name) { alert('Please enter your name first!'); document.getElementById('playerName').focus(); return; }
-
-  if (APPS_SCRIPT_URL === 'YOUR_APPS_SCRIPT_URL_HERE') {
-    alert('⚙️ The Google Sheets URL hasn\'t been configured yet.\n\nSee the setup instructions below the bracket.');
-    return;
-  }
-
-  const mergeNames  = draft.merge.filter(Boolean);
-  const ffNames     = draft.ff.filter(Boolean);
-  const juryNames   = draft.jury.filter(Boolean);
-
-  if (mergeNames.length === 0) { alert('Fill in at least your Merge picks before submitting!'); return; }
-
-  const poolLabel = currentGroup === 'ddx' ? 'DDx' : 'Friends';
-
+  if (APPS_SCRIPT_URL==='YOUR_APPS_SCRIPT_URL_HERE') { alert('Apps Script URL not configured yet.'); return; }
+  if (!draft.merge.filter(Boolean).length) { alert('Fill in at least your Merge picks first!'); return; }
+  const poolLabel = currentGroup==='ddx'?'DDx':'Friends';
   const payload = {
-    name,
-    group: currentGroup,
-    timestamp:      new Date().toISOString(),
-    premerge_boots: draft.premerge.join(', '),
-    merge:          mergeNames.join(', '),
-    final_four:     ffNames.join(', '),
-    loses_fire:     draft.fire || '',
-    final_tribal_1st: draft.ft[0] || '',
-    final_tribal_2nd: draft.ft[1] || '',
-    final_tribal_3rd: draft.ft[2] || '',
-    jury:           juryNames.join(', '),
+    name, group:currentGroup, timestamp:new Date().toISOString(),
+    premerge_boots:draft.premerge.join(', '), merge:draft.merge.filter(Boolean).join(', '),
+    final_four:draft.ff.filter(Boolean).join(', '), loses_fire:draft.fire||'',
+    final_tribal_1st:draft.ft[0]||'', final_tribal_2nd:draft.ft[1]||'',
+    final_tribal_3rd:draft.ft[2]||'', jury:draft.jury.filter(Boolean).join(', '),
   };
-
-  setStatus('loading', '⏳ Submitting…');
-  document.getElementById('btnSubmit').disabled = true;
-
+  setStatus('loading','⏳ Submitting…');
+  document.getElementById('btnSubmit').disabled=true;
   try {
-    await fetch(APPS_SCRIPT_URL, {
-      method: 'POST',
-      mode:   'no-cors',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(payload),
-    });
-    // no-cors means we can't read the response — assume success
-    setStatus('success', `✓ ${name}'s bracket submitted to ${poolLabel}!`);
-    // Store submission flag locally
-    localStorage.setItem('s50_submitted_name', name);
-  } catch (err) {
-    setStatus('error', '✗ Submission failed — check your network and try again.');
+    await fetch(APPS_SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+    setStatus('success',`✓ ${name}'s bracket submitted to ${poolLabel}!`);
+    localStorage.setItem('s50_submitted_name',name);
+  } catch(e) {
+    setStatus('error','✗ Submission failed — check your network.');
   } finally {
-    document.getElementById('btnSubmit').disabled = false;
+    document.getElementById('btnSubmit').disabled=false;
   }
 }
-
-function setStatus(type, msg) {
-  const el = document.getElementById('submitStatus');
-  el.className = 'submit-status ' + type;
-  el.textContent = msg;
+function setStatus(type,msg) {
+  const el=document.getElementById('submitStatus');
+  el.className='submit-status'+(type?' '+type:''); el.textContent=msg;
 }
 
-// ══════════════════════════════════════════════
-// ALL PICKS — load from Google Sheets
-// ══════════════════════════════════════════════
+// ══════════════════════════════════════════════════════
+// ALL PICKS
+// ══════════════════════════════════════════════════════
 async function loadAllPicks() {
-  const grid = document.getElementById('summaryGrid');
-  grid.innerHTML = `<div class="sc-loading">Loading brackets from Google Sheets…</div>`;
-
-  if (APPS_SCRIPT_URL === 'YOUR_APPS_SCRIPT_URL_HERE') {
-    grid.innerHTML = `<div class="sc-loading" style="color:var(--sand-dim)">Google Sheets not yet configured.<br><br>See setup instructions.</div>`;
-    return;
+  const grid=document.getElementById('summaryGrid');
+  const poolLabel=currentGroup==='ddx'?'DDx':'Friends';
+  grid.innerHTML=`<div class="sc-loading">Loading ${poolLabel} brackets…</div>`;
+  if (APPS_SCRIPT_URL==='YOUR_APPS_SCRIPT_URL_HERE') {
+    grid.innerHTML=`<div class="sc-loading" style="color:var(--sand-dim)">Apps Script not configured.</div>`; return;
   }
-
   try {
-    const res  = await fetch(APPS_SCRIPT_URL + '?action=getAll&group=' + currentGroup);
-    const rows = await res.json();
-
-    if (!rows.length) { grid.innerHTML = `<div class="sc-loading" style="color:var(--sand-dim)">No submissions yet.</div>`; return; }
-
-    grid.innerHTML = rows.map(r => {
-      const merge = r.merge ? r.merge.split(', ') : [];
-      const ff    = r.final_four ? r.final_four.split(', ') : [];
-      const winner = r.final_tribal_1st || '';
-      const ts = r.timestamp ? new Date(r.timestamp).toLocaleDateString() : '';
-
+    const [br,gsr] = await Promise.all([
+      fetch(APPS_SCRIPT_URL+'?action=getAll&group='+currentGroup),
+      fetch(APPS_SCRIPT_URL+'?action=getGameState'),
+    ]);
+    const rows=await br.json(), gs=await gsr.json();
+    if (!rows.length) { grid.innerHTML=`<div class="sc-loading" style="color:var(--sand-dim)">No ${poolLabel} submissions yet.</div>`; return; }
+    grid.innerHTML=rows.map(r => {
+      const score=calcScore(r,gs);
+      const merge=r.merge?r.merge.split(', '):[], ff=r.final_four?r.final_four.split(', '):[];
+      const ts=r.timestamp?new Date(r.timestamp).toLocaleDateString():'';
       return `<div class="summary-card">
-        <div class="sc-head">
-          <span>${r.name}</span>
-          <span class="sc-submitted">✓ ${ts}</span>
-        </div>
-        ${merge.length ? `<div class="sc-section">MERGE PICKS</div>`
-          + merge.slice(0,6).map(n=>`<div class="sc-row"><span class="sc-name">${n}</span></div>`).join('')
-          + (merge.length>6?`<div class="sc-row"><span class="sc-name" style="opacity:.4;font-style:italic">+${merge.length-6} more…</span></div>`:'')
-          : ''}
-        ${ff.length ? `<div class="sc-section">FINAL FOUR</div>`
-          + ff.map(n=>`<div class="sc-row"><span class="sc-name">${n}</span><span class="sc-tag">F4</span></div>`).join('')
-          : ''}
-        ${r.loses_fire ? `<div class="sc-row"><span class="sc-name">🔥 ${r.loses_fire}</span><span class="sc-tag">Fire</span></div>` : ''}
-        ${(r.final_tribal_1st||r.final_tribal_2nd||r.final_tribal_3rd) ? `<div class="sc-section">FINAL TRIBAL</div>`
-          + [[r.final_tribal_1st,'🥇'],[r.final_tribal_2nd,'🥈'],[r.final_tribal_3rd,'🥉']]
-            .filter(([n])=>n).map(([n,e])=>`<div class="sc-row"><span class="sc-name">${e} ${n}</span></div>`).join('')
-          : ''}
-        ${winner ? `<div class="sc-winner">🏆 Winner: ${winner}</div>` : ''}
+        <div class="sc-head"><span>${r.name}</span><span class="sc-pts">${score.total} pts</span></div>
+        <div class="sc-row" style="background:rgba(201,151,42,0.04)">
+          <span class="sc-name" style="font-size:0.68rem;opacity:.5">submitted ${ts}</span></div>
+        ${merge.length?`<div class="sc-section">MERGE PICKS</div>`
+          +merge.slice(0,6).map(n=>`<div class="sc-row"><span class="sc-name">${n}</span></div>`).join('')
+          +(merge.length>6?`<div class="sc-row"><span class="sc-name" style="opacity:.4;font-style:italic">+${merge.length-6} more…</span></div>`:''): ''}
+        ${ff.length?`<div class="sc-section">FINAL FOUR</div>`
+          +ff.map(n=>`<div class="sc-row"><span class="sc-name">${n}</span><span class="sc-tag">F4</span></div>`).join(''):''}
+        ${r.final_tribal_1st?`<div class="sc-winner">🏆 Winner pick: ${r.final_tribal_1st}</div>`:''}
       </div>`;
     }).join('');
-  } catch(e) {
-    grid.innerHTML = `<div class="sc-loading" style="color:#f08080">Failed to load picks. Check the Apps Script URL and make sure it's deployed as a web app.</div>`;
-  }
+  } catch(e) { grid.innerHTML=`<div class="sc-loading" style="color:#f08080">Failed to load picks.</div>`; }
 }
 
-// ══════════════════════════════════════════════
-// RENDER ALL
-// ══════════════════════════════════════════════
+// ══════════════════════════════════════════════════════
+// LEADERBOARD
+// ══════════════════════════════════════════════════════
+async function loadScores() {
+  const loading=document.getElementById('lbLoading'), table=document.getElementById('lbTable');
+  const body=document.getElementById('lbBody'), banner=document.getElementById('episodeBanner');
+  loading.style.display='block'; table.style.display='none';
+  if (APPS_SCRIPT_URL==='YOUR_APPS_SCRIPT_URL_HERE') { loading.textContent='Apps Script not configured.'; return; }
+  try {
+    const [br,gsr]=await Promise.all([
+      fetch(APPS_SCRIPT_URL+'?action=getAll&group='+currentGroup),
+      fetch(APPS_SCRIPT_URL+'?action=getGameState'),
+    ]);
+    const rows=await br.json(), gs=await gsr.json();
+    gameState=gs;
+    if (!rows.length) { loading.textContent='No submissions yet for this pool.'; return; }
+
+    const scored=rows.map(r=>({name:r.name,score:calcScore(r,gs)}))
+                     .sort((a,b)=>b.score.total-a.score.total);
+
+    banner.textContent = gs.episode>0 ? `THROUGH EPISODE ${gs.episode}` : 'SEASON NOT YET STARTED';
+    banner.style.display='inline-block';
+
+    const rankEmoji=['🥇','🥈','🥉'];
+    const rankCls  =['gold','silver','bronze'];
+
+    body.innerHTML=scored.map((p,i)=>{
+      const s=p.score, rowId='lbr'+i, brkId='lbb'+i;
+      return `<tr class="lb-row" id="${rowId}" onclick="toggleBreakdown('${rowId}','${brkId}')">
+        <td class="lb-rank ${rankCls[i]||''}">${rankEmoji[i]||i+1}</td>
+        <td class="lb-name">${p.name}</td>
+        <td class="lb-pts" style="font-size:0.78rem;color:var(--sand-dim)">
+          ${s.mergePts}<span class="lb-pts-sub">${s.mergeHits} correct</span></td>
+        <td class="lb-pts" style="font-size:0.78rem;color:var(--sand-dim)">
+          ${s.juryPts}<span class="lb-pts-sub">${s.juryHits} on jury</span></td>
+        <td class="lb-pts" style="font-size:0.78rem;color:var(--sand-dim)">
+          ${s.ffPts}<span class="lb-pts-sub">${s.ffHits} correct</span></td>
+        <td class="lb-pts" style="font-size:0.78rem;color:${s.winnerCorrect?'#FFD700':'var(--sand-dim)'}">
+          ${s.winnerPts}</td>
+        <td class="lb-pts">${s.total}</td>
+      </tr>
+      <tr class="lb-breakdown" id="${brkId}">
+        <td colspan="7">
+          <div class="bd-grid">
+            <div class="bd-item"><span class="bd-label">MERGE PTS</span><span class="bd-val">${s.mergePts}</span></div>
+            <div class="bd-item"><span class="bd-label">JURY PTS</span><span class="bd-val">${s.juryPts}</span></div>
+            <div class="bd-item"><span class="bd-label">FINAL FOUR PTS</span><span class="bd-val">${s.ffPts}</span></div>
+            <div class="bd-item"><span class="bd-label">WINNER PTS</span>
+              <span class="bd-val ${s.winnerCorrect?'':'zero'}">${s.winnerPts}</span></div>
+            <div class="bd-item" style="border-color:rgba(201,151,42,0.35)">
+              <span class="bd-label">TOTAL</span>
+              <span class="bd-val" style="color:var(--gold-light);font-size:1rem">${s.total}</span></div>
+            <div class="bd-item"><span class="bd-label">MAX POSSIBLE</span>
+              <span class="bd-val" style="opacity:.3">140</span></div>
+          </div>
+        </td>
+      </tr>`;
+    }).join('');
+
+    loading.style.display='none'; table.style.display='';
+  } catch(e) { loading.textContent='Failed to load scores. Check Apps Script URL.'; }
+}
+
+function toggleBreakdown(rowId,brkId) {
+  const row=document.getElementById(rowId), brk=document.getElementById(brkId);
+  const wasOpen=brk.classList.contains('open');
+  document.querySelectorAll('.lb-breakdown').forEach(el=>el.classList.remove('open'));
+  document.querySelectorAll('.lb-row').forEach(el=>el.classList.remove('expanded'));
+  if (!wasOpen) { brk.classList.add('open'); row.classList.add('expanded'); }
+}
+
+// ══════════════════════════════════════════════════════
+// ADMIN
+// ══════════════════════════════════════════════════════
+function checkAdminPw() {
+  if (document.getElementById('adminPwInput').value===ADMIN_PASSWORD) {
+    adminUnlocked=true;
+    document.getElementById('adminLock').style.display='none';
+    document.getElementById('adminPanel').classList.add('open');
+    loadGameStateForAdmin();
+  } else {
+    document.getElementById('adminPwErr').style.display='block';
+  }
+}
+function initAdmin() { if (adminUnlocked) loadGameStateForAdmin(); }
+
+async function loadGameStateForAdmin() {
+  if (APPS_SCRIPT_URL==='YOUR_APPS_SCRIPT_URL_HERE') { populateAdminUI({episode:0,merge:[],jury:[],finalFour:[],winner:''}); return; }
+  try {
+    const res=await fetch(APPS_SCRIPT_URL+'?action=getGameState');
+    const gs=await res.json();
+    gameState=gs; populateAdminUI(gs);
+  } catch(e) { populateAdminUI({episode:0,merge:[],jury:[],finalFour:[],winner:''}); }
+}
+
+function populateAdminUI(gs) {
+  document.getElementById('adminEpisode').value=gs.episode||'';
+  const mergeSet=new Set(gs.merge||[]), jurySet=new Set(gs.jury||[]), ffSet=new Set(gs.finalFour||[]);
+  // Merge chips — all castaways
+  document.getElementById('mergeChips').innerHTML=CAST.map(c=>
+    `<span class="chip chip-${c.tribe}${mergeSet.has(c.name)?' selected':''}"
+       onclick="toggleChip(this,'merge','${esc(c.name)}')">${c.name}</span>`
+  ).join('');
+  rebuildJuryChips(mergeSet,jurySet);
+  rebuildFFChips(mergeSet,jurySet,ffSet);
+  rebuildWinnerSelect(ffSet,gs.winner||'');
+}
+
+function getSelected(containerId) {
+  return new Set([...document.querySelectorAll(`#${containerId} .chip.selected`)].map(el=>el.textContent.trim()));
+}
+
+function rebuildJuryChips(mergeSet,jurySet) {
+  document.getElementById('juryChips').innerHTML=[...mergeSet].length
+    ? [...mergeSet].map(name=>{
+        const c=CAST.find(x=>x.name===name),t=c?c.tribe:'cila';
+        return `<span class="chip chip-${t}${jurySet.has(name)?' selected':''}"
+          onclick="toggleChip(this,'jury','${esc(name)}')">${name}</span>`;
+      }).join('')
+    : '<span style="font-size:0.75rem;color:var(--sand-dim);font-style:italic">Set merge survivors first</span>';
+}
+function rebuildFFChips(mergeSet,jurySet,ffSet) {
+  const eligible=[...mergeSet].filter(n=>!jurySet.has(n));
+  document.getElementById('ffChips').innerHTML=eligible.length
+    ? eligible.map(name=>{
+        const c=CAST.find(x=>x.name===name),t=c?c.tribe:'cila';
+        return `<span class="chip chip-${t}${ffSet.has(name)?' selected':''}"
+          onclick="toggleChip(this,'ff','${esc(name)}')">${name}</span>`;
+      }).join('')
+    : '<span style="font-size:0.75rem;color:var(--sand-dim);font-style:italic">Set merge & jury first</span>';
+}
+function rebuildWinnerSelect(ffSet,currentWinner) {
+  const sel=document.getElementById('adminWinner');
+  sel.innerHTML='<option value="">— not yet —</option>';
+  [...ffSet].forEach(name=>{
+    const opt=document.createElement('option');
+    opt.value=name; opt.textContent=name;
+    if (name===currentWinner) opt.selected=true;
+    sel.appendChild(opt);
+  });
+}
+function toggleChip(el,type) {
+  el.classList.toggle('selected');
+  const mergeSet=getSelected('mergeChips'), jurySet=getSelected('juryChips'), ffSet=getSelected('ffChips');
+  if (type==='merge') { rebuildJuryChips(mergeSet,jurySet); rebuildFFChips(mergeSet,jurySet,ffSet); rebuildWinnerSelect(ffSet,document.getElementById('adminWinner').value); }
+  else if (type==='jury') { rebuildFFChips(mergeSet,jurySet,ffSet); rebuildWinnerSelect(ffSet,document.getElementById('adminWinner').value); }
+  else if (type==='ff')   { rebuildWinnerSelect(ffSet,document.getElementById('adminWinner').value); }
+}
+
+async function saveGameState() {
+  const mergeSet=getSelected('mergeChips'), jurySet=getSelected('juryChips'), ffSet=getSelected('ffChips');
+  const payload = {
+    action:'saveGameState',
+    episode:parseInt(document.getElementById('adminEpisode').value)||0,
+    merge:[...mergeSet], jury:[...jurySet], finalFour:[...ffSet],
+    winner:document.getElementById('adminWinner').value,
+  };
+  const st=document.getElementById('adminStatus');
+  st.className='admin-status ok'; st.textContent='⏳ Saving…'; st.style.display='block';
+  try {
+    await fetch(APPS_SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+    st.textContent='✓ Game state saved! Scores will update automatically.';
+    gameState={episode:payload.episode,merge:payload.merge,jury:payload.jury,finalFour:payload.finalFour,winner:payload.winner};
+  } catch(e) { st.className='admin-status err'; st.textContent='✗ Save failed.'; }
+}
+
+async function clearGameState() {
+  const payload={action:'saveGameState',episode:0,merge:[],jury:[],finalFour:[],winner:''};
+  await fetch(APPS_SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+  populateAdminUI(payload);
+  const st=document.getElementById('adminStatus');
+  st.className='admin-status ok'; st.textContent='✓ Game state cleared.'; st.style.display='block';
+}
+
+// ══════════════════════════════════════════════════════
+// RENDER
+// ══════════════════════════════════════════════════════
 function renderAll() {
-  if (currentView==='bracket') {
-    renderTribeCol();
-    renderSlots();
-  }
+  if (currentView==='bracket') { renderTribeCol(); renderSlots(); }
 }
-
 function esc(s) { return s.replace(/\\/g,'\\\\').replace(/'/g,"\\'"); }
 
-// Restore name if previously submitted
-const prevName = localStorage.getItem('s50_submitted_name');
-if (prevName) document.getElementById('playerName').value = prevName;
-
+const prevName=localStorage.getItem('s50_submitted_name');
+if (prevName) document.getElementById('playerName').value=prevName;
 renderAll();
 </script>
-
-
-
 </body>
 </html>
