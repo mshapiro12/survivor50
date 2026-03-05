@@ -441,7 +441,7 @@ header {
 // ══════════════════════════════════════════════════════
 // CONFIG
 // ══════════════════════════════════════════════════════
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyWA4M0vWwY0HXpGseNcJpHX71GZJVJj4Jp1knklptlH8bZfsZRMq23CwBazdP8EJv7/exec';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzvyWIc1Rk8mJdIaYNeNcyIrPl1DcMBM9DbLiLcHS8/dev';
 const ADMIN_PASSWORD  = 'survivor50';  // ← change this before deploying!
 
 // ══════════════════════════════════════════════════════
@@ -636,18 +636,51 @@ function openPicker(key) {
   const [group] = key.split('-');
   const titles = {merge:'Merge Pick',ff:'Final Four Pick',fire:'Loses Fire Making',jury:'Jury Pick',ft:'Final Tribal Pick'};
   document.getElementById('pickerTitle').textContent = titles[group]||'Pick a Castaway';
-  const premerge=new Set(draft.premerge), used=allSlotNames();
-  let eligible = CAST.filter(c=>!premerge.has(c.name));
-  if (group==='fire'||group==='ft') eligible=eligible.filter(c=>draft.ff.includes(c.name));
-  document.getElementById('pickerSub').textContent =
-    (group==='fire'||group==='ft')?'Only Final Four eligible':'Greyed out = already placed';
+  const premerge = new Set(draft.premerge);
+
+  // Each section has its OWN used set — a name can appear in merge AND final four/jury
+  let eligible, usedSet;
+  if (group === 'merge') {
+    eligible = CAST.filter(c => !premerge.has(c.name));
+    usedSet  = new Set(draft.merge.filter(Boolean));
+  } else if (group === 'ff') {
+    // Only merge picks are eligible; grey out ones already in another ff slot
+    eligible = CAST.filter(c => !premerge.has(c.name) && draft.merge.includes(c.name));
+    usedSet  = new Set(draft.ff.filter(Boolean));
+  } else if (group === 'jury') {
+    // Only merge picks eligible; grey out ones already in another jury slot
+    eligible = CAST.filter(c => !premerge.has(c.name) && draft.merge.includes(c.name));
+    usedSet  = new Set(draft.jury.filter(Boolean));
+  } else if (group === 'fire' || group === 'ft') {
+    // Only final four picks eligible
+    eligible = CAST.filter(c => draft.ff.includes(c.name));
+    usedSet  = new Set([...draft.ft.filter(Boolean), draft.fire].filter(Boolean));
+  } else {
+    eligible = CAST.filter(c => !premerge.has(c.name));
+    usedSet  = new Set();
+  }
+
+  const subText = {
+    merge:  'Pick who you think makes the merge',
+    ff:     'Must be one of your merge picks',
+    jury:   'Must be one of your merge picks',
+    fire:   'Only your Final Four picks are eligible',
+    ft:     'Only your Final Four picks are eligible',
+  };
+  document.getElementById('pickerSub').textContent = subText[group] || '';
+
   document.getElementById('pickerList').innerHTML = eligible.length
-    ? eligible.map(c=>`<div class="picker-item ${used.has(c.name)?'used':''}"
-        onclick="${used.has(c.name)?'': `pickCastaway('${esc(c.name)}')`}">
-        <div class="picker-pip pip-${c.tribe}"></div>
-        <div><div class="picker-name">${c.name}</div><div class="picker-season">${c.season}</div></div>
-      </div>`).join('')
-    : `<div style="padding:20px;text-align:center;color:var(--sand-dim);font-style:italic">No eligible castaways yet.</div>`;
+    ? eligible.map(c => {
+        const isUsed = usedSet.has(c.name);
+        return `<div class="picker-item ${isUsed?'used':''}"
+          onclick="${isUsed ? '' : `pickCastaway('${esc(c.name)}')`}">
+          <div class="picker-pip pip-${c.tribe}"></div>
+          <div><div class="picker-name">${c.name}</div><div class="picker-season">${c.season}</div></div>
+        </div>`;
+      }).join('')
+    : `<div style="padding:20px;text-align:center;color:var(--sand-dim);font-style:italic">
+        ${group==='ff'||group==='jury' ? 'Fill in your Merge picks first!' : 'No eligible castaways.'}</div>`;
+
   document.getElementById('pickerOverlay').classList.add('open');
 }
 function closePicker() { document.getElementById('pickerOverlay').classList.remove('open'); activeSlotKey=null; }
