@@ -441,7 +441,7 @@ header {
 // ══════════════════════════════════════════════════════
 // CONFIG
 // ══════════════════════════════════════════════════════
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzvyWIc1Rk8mJdIaYNeNcyIrPl1DcMBM9DbLiLcHS8/dev';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzSTqR7DBZ2L7Hl3JA0-ZjymE4M0DgI2_VvrbEs0otBYKzIsLahalKNqqmspwtYluI/exec';
 const ADMIN_PASSWORD  = 'survivor50';  // ← change this before deploying!
 
 // ══════════════════════════════════════════════════════
@@ -745,11 +745,17 @@ async function loadAllPicks() {
     grid.innerHTML=`<div class="sc-loading" style="color:var(--sand-dim)">Apps Script not configured.</div>`; return;
   }
   try {
-    const [br,gsr] = await Promise.all([
-      fetch(APPS_SCRIPT_URL+'?action=getAll&group='+currentGroup),
-      fetch(APPS_SCRIPT_URL+'?action=getGameState'),
-    ]);
-    const rows=await br.json(), gs=await gsr.json();
+    // Fetch brackets — required
+    const br = await fetch(APPS_SCRIPT_URL+'?action=getAll&group='+currentGroup);
+    const rows = await br.json();
+
+    // Fetch game state — optional, fall back to empty if not yet set
+    let gs = { episode:0, merge:[], jury:[], finalFour:[], winner:'' };
+    try {
+      const gsr = await fetch(APPS_SCRIPT_URL+'?action=getGameState');
+      gs = await gsr.json();
+    } catch(e) { /* no game state yet, scores will all be 0 */ }
+
     if (!rows.length) { grid.innerHTML=`<div class="sc-loading" style="color:var(--sand-dim)">No ${poolLabel} submissions yet.</div>`; return; }
     grid.innerHTML=rows.map(r => {
       const score=calcScore(r,gs);
@@ -767,7 +773,10 @@ async function loadAllPicks() {
         ${r.final_tribal_1st?`<div class="sc-winner">🏆 Winner pick: ${r.final_tribal_1st}</div>`:''}
       </div>`;
     }).join('');
-  } catch(e) { grid.innerHTML=`<div class="sc-loading" style="color:#f08080">Failed to load picks.</div>`; }
+  } catch(e) {
+    grid.innerHTML=`<div class="sc-loading" style="color:#f08080">Failed to load picks. Check that your Apps Script is deployed and the URL is correct.</div>`;
+    console.error('loadAllPicks error:', e);
+  }
 }
 
 // ══════════════════════════════════════════════════════
@@ -779,11 +788,16 @@ async function loadScores() {
   loading.style.display='block'; table.style.display='none';
   if (APPS_SCRIPT_URL==='YOUR_APPS_SCRIPT_URL_HERE') { loading.textContent='Apps Script not configured.'; return; }
   try {
-    const [br,gsr]=await Promise.all([
-      fetch(APPS_SCRIPT_URL+'?action=getAll&group='+currentGroup),
-      fetch(APPS_SCRIPT_URL+'?action=getGameState'),
-    ]);
-    const rows=await br.json(), gs=await gsr.json();
+    // Fetch brackets — required
+    const br = await fetch(APPS_SCRIPT_URL+'?action=getAll&group='+currentGroup);
+    const rows = await br.json();
+
+    // Fetch game state — optional
+    let gs = { episode:0, merge:[], jury:[], finalFour:[], winner:'' };
+    try {
+      const gsr = await fetch(APPS_SCRIPT_URL+'?action=getGameState');
+      gs = await gsr.json();
+    } catch(e) { /* game state not yet saved */ }
     gameState=gs;
     if (!rows.length) { loading.textContent='No submissions yet for this pool.'; return; }
 
